@@ -5,7 +5,7 @@ namespace BitCoin.Xam.ViewModel.Base
 {
     public class ViewModelLocator
     {
-        readonly IUnityContainer _container;
+        public readonly IUnityContainer _container;
 
         public ViewModelLocator()
         {
@@ -23,7 +23,7 @@ namespace BitCoin.Xam.ViewModel.Base
             get { return _container.Resolve<MainViewModel>(); }
         }
 
-        public AreaViewModel AreaViewModel {
+       public  AreaViewModel AreaViewModel {
             get { return _container.Resolve<AreaViewModel>(); }
         }
 

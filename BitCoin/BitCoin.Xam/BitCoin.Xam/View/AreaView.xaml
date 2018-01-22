@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BitCoin.Xam.View.AreaView">
-    <AbsoluteLayout>
-        <oxyplot:PlotView
+             x:Class="BitCoin.Xam.View.AreaView"
+             xmlns:oxyplot="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             Title="Area">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <oxyplot:PlotView
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
             Model="{Binding PlotModel}" />
-    </AbsoluteLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>
