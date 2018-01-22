@@ -32,7 +32,7 @@ namespace CurrenciesRate
             var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
             double bid = double.Parse(dict["bid"].Replace(".", ","));
             double ask = double.Parse(dict["ask"].Replace(".", ","));
-            return new BidAskPair(bid , ask);
+            return new BidAskPair(bid , ask, "bitstamp");
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace CurrenciesRate
             var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
             double bid = double.Parse(dict["bid"].Replace(".", ","));
             double ask = double.Parse(dict["ask"].Replace(".", ","));
-            return new BidAskPair(bid, ask);
+            return new BidAskPair(bid, ask, "bitfinex");
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace CurrenciesRate
             var dict = JsonConvert.DeserializeObject<KrakenModel>(response);
             var bid = double.Parse((dict.Result["XXBTZUSD"]["bids"][0][0] as string).Replace(".", ","));
             var ask = double.Parse((dict.Result["XXBTZUSD"]["asks"][0][0] as string).Replace(".", ","));
-            return new BidAskPair(bid, ask);
+            return new BidAskPair(bid, ask, "kraken");
         }
 
         /// <summary>
