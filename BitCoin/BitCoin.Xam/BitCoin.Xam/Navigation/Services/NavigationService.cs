@@ -1,11 +1,13 @@
-﻿using System;
+﻿using BitCoin.Xam.View;
+using BitCoin.Xam.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
 namespace BitCoin.Xam.Navigation.Services
 {
-    class NavigationService : INavigationService
+    public class NavigationService : INavigationService
     {
         private IDictionary<Type, Type> viewModelRouting = new Dictionary<Type, Type>()
         {
