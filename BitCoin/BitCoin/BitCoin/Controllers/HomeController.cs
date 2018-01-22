@@ -14,5 +14,10 @@ namespace BitCoin.Controllers
         {
             return View();
         }
+
+        public IActionResult UpdateRates()
+        {
+            return BadRequest();
+        }
     }
 }
