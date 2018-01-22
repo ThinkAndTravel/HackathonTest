@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitCoin", "BitCoin\BitCoin\BitCoin.csproj", "{8C8F578E-1BCE-4461-B1B4-57EF34EFD79D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitCoinWeb", "BitCoin\BitCoin\BitCoinWeb.csproj", "{8C8F578E-1BCE-4461-B1B4-57EF34EFD79D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitCoin.Xam.Android", "BitCoin.Xam\BitCoin.Xam.Android\BitCoin.Xam.Android.csproj", "{0A411BDF-62B6-4B1E-BCE7-160D5904E981}"
 EndProject
