@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BitCoin.Models;
+using CurrenciesRate;
 
 namespace BitCoin.Controllers
 {
@@ -15,9 +16,22 @@ namespace BitCoin.Controllers
             return View();
         }
 
-        public IActionResult UpdateRates()
+        public async Task<IActionResult> UpdateRates()
         {
-            return BadRequest();
+            try
+            {
+                var rates = await GetRate.GetAll();
+                foreach (var rate in rates)
+                {
+
+                }
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }
