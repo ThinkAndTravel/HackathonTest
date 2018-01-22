@@ -151,6 +151,9 @@
     <PackageReference Include="OxyPlot.Xamarin.Forms">
       <Version>1.1.0-unstable0011</Version>
     </PackageReference>
+    <PackageReference Include="Unity">
+      <Version>5.5.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.1" />
   </ItemGroup>
