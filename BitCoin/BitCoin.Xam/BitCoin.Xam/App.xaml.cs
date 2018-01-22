@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace BitCoin.Xam
 {
@@ -13,8 +8,8 @@ namespace BitCoin.Xam
 		{
 			InitializeComponent();
 
-			MainPage = new BitCoin.Xam.MainPage();
-		}
+            
+        }
 
 		protected override void OnStart ()
 		{
