@@ -13,27 +13,23 @@ namespace BitCoinWeb.Controllers
     {
         MongoClient client;
         IMongoDatabase db;
-        IMongoCollection<BsonDocument> Rates;
+        IMongoCollection<BidAskPair> Rates;
         public void Connect()
         {
             client = new MongoClient("mongodb://admin:121314qw@ds046377.mlab.com:46377/bitcoin");
             db = client.GetDatabase("bitcoin");
-            Rates = db.GetCollection<BsonDocument>("Rates");
+            Rates = db.GetCollection<BidAskPair>("Rates");
         }
         public void Add(BidAskPair rate)
         {
             Rates.InsertOne(rate);
-        }
-        public void Delete(BidAskPair photo)
-        {
-            Rates.DeleteOne(photo.ToBsonDocument());
         }
         public List<BidAskPair> Find(String excahnger)
         {
             var filter = new BsonDocument("excahger", excahnger);
 
             var q = Rates.FindSync(filter);
-            return q;
+            return q.ToList();
         }
     }
 }
