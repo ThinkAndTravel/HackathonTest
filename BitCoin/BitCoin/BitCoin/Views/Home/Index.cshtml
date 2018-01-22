@@ -1,106 +1,118 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Курс BitCoin</h2>
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+    <style>
+        .axis path, .axis line {
+            fill: none;
+            stroke: #333;
+        }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+        .axis .grid-line {
+            stroke: #000;
+            shape-rendering: crispedges;
+            stroke-opacity: 0.2;
+        }
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+        .axis text {
+            font: 10px Verdana;
+        }
+    </style>
+    <script type="text/javascript">
+        var height = 500;
+        var width = 1200;
+        var margin = 50;
+        var offset = 50;
+        var xAxisLength = width - 2 * margin;
+        var yAxisLength = height - 2 * margin;
+        var rawData = [
+                {x: new Date(2018,0,22,0,15) , y: 10000}, {x: new Date(2018,0,22,2,15) , y: 13786},
+		        {x: new Date(2018,0,22,3,0) , y: 11500}, {x: new Date(), y: 12000}
+            ],
+            data=[];
+        var rawData1 = [
+                {x:new Date(2018,0,22,0,0) , y: 10000}, {x:new Date(2018,0,22,2,15) , y: 12000},
+		        {x: new Date(2018,0,22,3,30), y: 11873}, {x: new Date(), y: 14000}
+            ],
+            data1=[];
+        var svg = d3.select("body").append("svg")
+            .attr("class", "axis")
+            .attr("width", width)
+            .attr("height", height);
+
+    // функция интерполяции времени на оси
+        var scaleX = d3.time.scale() // от 1 января 2015 года до текущей даты
+                    .domain([new Date(2018, 0, 22), new Date()])
+                    .range([0, xAxisLength]);
+
+
+        var scaleY = d3.scale.linear()
+                    .domain([14000, 10000])
+                    .range([0, yAxisLength]);
+
+        var xAxis = d3.svg.axis()
+                    .scale(scaleX)
+                    .orient('bottom')
+                    .ticks(30)
+				    .tickFormat(d3.time.format('%H:%M'));
+
+    	var yAxis = d3.svg.axis()
+                    .scale(scaleY)
+                    .orient("left")
+			        .ticks(15);
+
+	    for(i=0; i<rawData.length; i++)
+		    data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+
+	    for(i=0; i<rawData1.length; i++)
+		    data1.push({x: scaleX(rawData1[i].x)+margin, y: scaleY(rawData1[i].y) + margin});
+
+	    svg.append("g")
+		    .attr("class", "x-axis")
+            .attr("transform", "translate("+margin+","+(height-margin)+")")
+            .call(xAxis);
+
+	    svg.append("g")
+		    .attr("class", "y-axis")
+		    .attr("transform", // сдвиг оси вниз и вправо на margin
+                "translate(" + margin + "," + margin + ")")
+		    .call(yAxis);
+
+		// рисуем горизонтальные линии
+    	d3.selectAll("g.y-axis g.tick")
+	    	.append("line")
+		    .classed("grid-line", true)
+		    .attr("x1", 0)
+		    .attr("y1", 0)
+		    .attr("x2", xAxisLength)
+		    .attr("y2", 0);
+
+        // создаем набор вертикальных линий для сетки
+	    d3.selectAll("g.x-axis g.tick")
+		    .append("line") // добавляем линию
+		    .classed("grid-line", true) // добавляем класс
+		    .attr("x1", 0)
+		    .attr("y1", 0)
+		    .attr("x2", 0)
+		    .attr("y2", - (yAxisLength));
+
+	    var line = d3.svg.line()
+                .x(function(d){return d.x;})
+                .y(function(d){return d.y;});
+        // добавляем путь
+	    svg.append("g").append("path")
+	    .attr("d", line(data))
+	    .style("stroke", "steelblue")
+	    .style("stroke-width", 2);
+
+	    svg.append("g").append("path")
+	    .attr("d", line(data1))
+	    .style("stroke", "#00ff21")
+            .style("stroke-width", 2);
+    </script>
+</body>
+</html>
