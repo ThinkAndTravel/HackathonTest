@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BitCoin.Models;
+using CurrenciesRate;
 
 namespace BitCoin.Controllers
 {
@@ -15,23 +16,22 @@ namespace BitCoin.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> UpdateRates()
         {
-            ViewData["Message"] = "Your application description page.";
+            try
+            {
+                var rates = await GetRate.GetAll();
+                foreach (var rate in rates)
+                {
 
-            return View();
-        }
+                }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }
