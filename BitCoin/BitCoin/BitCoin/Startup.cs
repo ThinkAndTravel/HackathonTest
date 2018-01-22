@@ -49,6 +49,10 @@ namespace BitCoin
                     name: "update_rates",
                     template: "{controller=Home}/{action=UpdateRates}"
                     );
+                routes.MapRoute(
+                    name: "last24hinfo",
+                    template: "{controller=Home}/{action=Last24hInfo}"//Last24hInfo
+                    );
             });
         }
     }

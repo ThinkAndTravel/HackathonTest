@@ -35,5 +35,13 @@ namespace BitCoin.Controllers
                 return BadRequest();
             }
         }
+
+        public List<BidAskPair> Last24hInfo()
+        {
+            MongoController.Connect();
+            var info = MongoController.Last24h();
+            return info;
+        }
+
     }
 }

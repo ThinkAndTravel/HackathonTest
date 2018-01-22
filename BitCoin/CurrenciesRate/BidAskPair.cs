@@ -25,12 +25,7 @@ namespace CurrenciesRate
             }
         }
 
-        public BidAskPair()
-        {
-            setID();
-            bid = ask = 0;
-            time = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-        }
+        public BidAskPair() {}
 
         public BidAskPair(double bid, double ask, string exchanger)
         {
