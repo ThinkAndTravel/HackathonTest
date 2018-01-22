@@ -9,24 +9,24 @@ using CurrenciesRate;
 
 namespace BitCoinWeb.Controllers
 {
-    public class MongoController
+    public static class MongoController
     {
-        MongoClient client;
-        IMongoDatabase db;
-        IMongoCollection<BidAskPair> Rates;
-        public void Connect()
+        public static MongoClient client;
+        public static IMongoDatabase db;
+        public static IMongoCollection<BidAskPair> Rates;
+        public static void Connect()
         {
-            client = new MongoClient("mongodb://admin:121314qw@ds046377.mlab.com:46377/bitcoin");
+            client = new MongoClient("mongodb://admin:121314qw@ds111608.mlab.com:11608/bitcoin");
             db = client.GetDatabase("bitcoin");
             Rates = db.GetCollection<BidAskPair>("Rates");
         }
-        public void Add(BidAskPair rate)
+        public static void Add(BidAskPair rate)
         {
             Rates.InsertOne(rate);
         }
-        public List<BidAskPair> Find(String excahnger)
+        public static List<BidAskPair> Find(String exchanger)
         {
-            var filter = new BsonDocument("excahger", excahnger);
+            var filter = new BsonDocument("exchanger", exchanger);
 
             var q = Rates.FindSync(filter);
             return q.ToList();

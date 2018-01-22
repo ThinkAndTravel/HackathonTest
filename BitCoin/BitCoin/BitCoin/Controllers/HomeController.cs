@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BitCoin.Models;
 using CurrenciesRate;
+using BitCoinWeb.Controllers;
 
 namespace BitCoin.Controllers
 {
@@ -21,14 +21,16 @@ namespace BitCoin.Controllers
             try
             {
                 var rates = await GetRate.GetAll();
+                MongoController.Connect();
+
                 foreach (var rate in rates)
                 {
-
+                    MongoController.Add(rate);    
                 }
 
                 return Ok();
             }
-            catch
+            catch(Exception e)
             {
                 return BadRequest();
             }
