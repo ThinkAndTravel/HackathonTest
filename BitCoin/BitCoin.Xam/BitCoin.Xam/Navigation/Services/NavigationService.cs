@@ -10,7 +10,7 @@ namespace BitCoin.Xam.Navigation.Services
         private IDictionary<Type, Type> viewModelRouting = new Dictionary<Type, Type>()
         {
             { typeof(MainViewModel), typeof(MainView) },
-           
+            { typeof(AreaViewModel), typeof(AreaView) },
         };
 
         public void NavigateTo<TDestinationViewModel>(object navigationContext = null)
