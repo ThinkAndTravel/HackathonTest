@@ -29,12 +29,14 @@ namespace BitCoin.Xam.ViewModel
 
             PlotModel = new PlotModel
             {
-                Title = "Rate Bitcoin"
+                Title = "Rate Bitcoin",
+                
             };
 
             var areaSerie = new AreaSeries
             {
-                StrokeThickness = 2.0
+                StrokeThickness = 2.0,
+               
             };
             List<BidAskPair> list = new List<BidAskPair>();
 

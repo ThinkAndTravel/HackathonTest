@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BitCoin.Xam.View.ProfitView"
              xmlns:oxyplot="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
-              Title="Bitcon">
+              Title="Bitcoin">
 
     <ContentPage.Content>
         <AbsoluteLayout>
