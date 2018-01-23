@@ -4,6 +4,7 @@ using System.Text;
 using OxyPlot;
 using OxyPlot.Series;
 using BitCoin.Xam.ViewModel.Base;
+using BitCoin.Xam.Services;
 
 namespace BitCoin.Xam.ViewModel
 {
@@ -32,13 +33,24 @@ namespace BitCoin.Xam.ViewModel
             {
                 StrokeThickness = 2.0
             };
+            List<BidAskPair> list = new List<BidAskPair>();
+            var t = list[0].time;
+            double[] Bid = Array.ConvertAll(new double[1450], v => -1.0);
+            double[] Ask = Array.ConvertAll(new double[1450], v => -1.0);
 
-            areaSerie.Points.Add(new DataPoint(0, 50));
-            areaSerie.Points.Add(new DataPoint(10, 60));
-            areaSerie.Points.Add(new DataPoint(20, 140));
-            areaSerie.Points2.Add(new DataPoint(0, 50));
-            areaSerie.Points2.Add(new DataPoint(5, 70));
-            areaSerie.Points2.Add(new DataPoint(15, 60));
+            list = BitCoin.Xam.Services.ApiService.Last24hPoints().Result;
+            foreach (var a in list)
+            {
+                DateTime time = DateTimeOffset.FromUnixTimeSeconds(a.time-t).DateTime;
+                int i = time.Hour * 60 + time.Minute;
+                if (Bid[i] == -1) Bid[i] = a.bid; else Bid[i] = System.Math.Max(Bid[i], a.bid);
+                if (Ask[i] == -1) Ask[i] = a.ask; else Ask[i] = System.Math.Min(Ask[i], a.ask);
+            }
+            for (int i = 0; i < 1440; i++)
+            {
+                areaSerie.Points.Add(new DataPoint(i, Bid[i]));
+                areaSerie.Points2.Add(new DataPoint(i, Ask[i]));
+            }
 
             PlotModel.Series.Add(areaSerie);
         }
