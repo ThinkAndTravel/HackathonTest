@@ -14,6 +14,7 @@ namespace BitCoin.Xam.ViewModel.Base
             // ViewModels
             _container.RegisterType<MainViewModel>();
             _container.RegisterType<AreaViewModel>();
+            _container.RegisterType<ProfitViewModel>();
             // Services     
             _container.RegisterType<INavigationService, NavigationService>();
         }
@@ -26,6 +27,9 @@ namespace BitCoin.Xam.ViewModel.Base
        public  AreaViewModel AreaViewModel {
             get { return _container.Resolve<AreaViewModel>(); }
         }
-
+        public ProfitViewModel ProfitViewModel
+        {
+            get { return _container.Resolve<ProfitViewModel>(); }
+        }
     }
 }

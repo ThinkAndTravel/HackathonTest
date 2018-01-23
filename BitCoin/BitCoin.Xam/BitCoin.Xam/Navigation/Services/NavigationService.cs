@@ -13,6 +13,7 @@ namespace BitCoin.Xam.Navigation.Services
         {
             { typeof(MainViewModel), typeof(MainView) },
             { typeof(AreaViewModel), typeof(AreaView) },
+             { typeof(ProfitViewModel), typeof(ProfitView) },
         };
 
         public void NavigateTo<TDestinationViewModel>(object navigationContext = null)

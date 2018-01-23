@@ -15,7 +15,7 @@ namespace BitCoin.Xam.ViewModel
     public class AreaViewModel : ViewModelBase
     {
         private PlotModel _plotModel;
-
+         
         public PlotModel PlotModel {
             get { return _plotModel; }
             set {
@@ -23,7 +23,17 @@ namespace BitCoin.Xam.ViewModel
                 RaisePropertyChanged();
             }
         }
+        private PlotModel _plotModelProfit;
 
+        public PlotModel PlotModelProfit
+        {
+            get { return _plotModelProfit; }
+            set
+            {
+                _plotModelProfit = value;
+                RaisePropertyChanged();
+            }
+        }
         public override void OnAppearing(object navigationContext)
         {
             base.OnAppearing(navigationContext);
@@ -74,6 +84,36 @@ namespace BitCoin.Xam.ViewModel
             }
 
             PlotModel.Series.Add(areaSerie);
+
+            PlotModelProfit = new PlotModel
+            {
+                Title = "Profit"
+            };
+            var areaSerieProfit = new AreaSeries
+            {
+                StrokeThickness = 2.0
+            };
+            List<Profit.Dot> listProfit = new List<Profit.Dot>();
+            listProfit = Profit.CalcProfit();
+            double[] profit = Array.ConvertAll(new double[1450], v => -1.0);
+            foreach (var a in listProfit)
+            {
+                DateTime time = DateTimeOffset.FromUnixTimeSeconds((long)a.x).DateTime;
+                int i = time.Hour * 60 + time.Minute;
+                //    if (Bid[i] == -1) Bid[i] = a.bid; else Bid[i] = System.Math.Max(Bid[i], a.bid);
+                if (profit[i] == -1) profit[i] = a.y;
+            }
+            for (int i = 0; i < 1440; i++)
+            {
+                //   if (Bid[i] != -1) areaSerie.Points.Add(new DataPoint(i/60.0, Bid[i]));
+                if (profit[i] != -1)
+                {
+                    areaSerieProfit.Points.Add(new DataPoint(i / 60.0, profit[i]));
+                    areaSerieProfit.Points2.Add(new DataPoint(i / 60.0, profit[i]));
+                }
+            }
+
+            PlotModelProfit.Series.Add(areaSerieProfit);
         }
     }
 }
