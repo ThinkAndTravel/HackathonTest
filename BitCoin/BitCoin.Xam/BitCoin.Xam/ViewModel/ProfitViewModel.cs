@@ -6,6 +6,6 @@ using System.Text;
 namespace BitCoin.Xam.ViewModel
 {
    public  class ProfitViewModel: ViewModelBase
-    {
-    }
+   {
+   }
 }

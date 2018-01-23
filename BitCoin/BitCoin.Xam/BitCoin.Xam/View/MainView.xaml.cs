@@ -15,6 +15,7 @@ namespace BitCoin.Xam.View
 		public MainView ()
 		{
 			InitializeComponent ();
-		}
+            BindingContext = App.Locator.MainViewModel;
+        }
 	}
 }

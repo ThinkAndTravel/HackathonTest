@@ -4,8 +4,12 @@ using System.Text;
 
 namespace BitCoin.Xam.Navigation.Services
 {
-    interface INavigationService
+    public interface INavigationService
     {
+        void NavigateTo<TDestinationViewModel>(object navigationContext = null);
 
+        void NavigateTo(Type destinationType, object navigationContext = null);
+
+        void NavigateBack();
     }
 }
