@@ -28,7 +28,7 @@ namespace BitCoin.Xam.ViewModel
         }
 
         public ICommand ProfitCommand {
-            get { return _areaCommand = _areaCommand ?? new DelegateCommand(ProfitCommandExecute); }
+            get { return _profitCommand = _profitCommand ?? new DelegateCommand(ProfitCommandExecute); }
         }
         private void ProfitCommandExecute()
         {
