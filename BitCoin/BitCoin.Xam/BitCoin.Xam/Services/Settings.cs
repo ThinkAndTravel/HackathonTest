@@ -8,6 +8,6 @@ namespace BitCoin.Xam.Services
 {
     public static class Settings
     {
-        public static string App_Uri = @"https://bitcoinweb20180123125040.azurewebsites.net/";
+        public static string App_Uri = @"http://bitcoinweb20180123125040.azurewebsites.net/";
     }
 }

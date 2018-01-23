@@ -1,11 +1,5 @@
-﻿using BitCoin.Xam.Services;
-using BitCoin.Xam.View;
+﻿using BitCoin.Xam.View;
 using BitCoin.Xam.ViewModel.Base;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
 using Xamarin.Forms;
 
 namespace BitCoin.Xam
@@ -23,8 +17,6 @@ namespace BitCoin.Xam
             InitializeComponent();
 
             MainPage = new NavigationPage(new AreaView(null));
-
-          
         }
 
         protected override void OnStart()
