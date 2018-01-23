@@ -21,6 +21,8 @@ namespace BitCoin.Controllers
             try
             {
                 var rates = await GetRate.GetAll();
+              
+
                 MongoController.Connect();
 
                 foreach (var rate in rates)
