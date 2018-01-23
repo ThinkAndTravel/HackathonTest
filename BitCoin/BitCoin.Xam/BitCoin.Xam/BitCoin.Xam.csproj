@@ -5,13 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.1.0-unstable0011" />
     <PackageReference Include="Unity" Version="5.5.5" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\BitCoin.Xam.Services\BitCoin.Xam.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
