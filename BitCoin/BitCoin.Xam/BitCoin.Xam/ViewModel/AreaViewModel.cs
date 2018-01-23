@@ -5,6 +5,9 @@ using OxyPlot;
 using OxyPlot.Series;
 using BitCoin.Xam.ViewModel.Base;
 using BitCoin.Xam.Services;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace BitCoin.Xam.ViewModel
 {
@@ -34,11 +37,23 @@ namespace BitCoin.Xam.ViewModel
                 StrokeThickness = 2.0
             };
             List<BidAskPair> list = new List<BidAskPair>();
-            var t = list[0].time;
+            
             double[] Bid = Array.ConvertAll(new double[1450], v => -1.0);
             double[] Ask = Array.ConvertAll(new double[1450], v => -1.0);
 
-            list = BitCoin.Xam.Services.ApiService.Last24hPoints().Result;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Settings.App_Uri + @"Home/Last24hInfo");
+            HttpWebResponse response = (HttpWebResponse)(request.GetResponseAsync().GetAwaiter().GetResult());
+
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                var str = reader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<BidAskPair>>(str);
+                list.Sort((a, b) => a.time.CompareTo(b.time));
+
+            }
+
+            var t = list[0].time; 
             foreach (var a in list)
             {
                 DateTime time = DateTimeOffset.FromUnixTimeSeconds(a.time-t).DateTime;
