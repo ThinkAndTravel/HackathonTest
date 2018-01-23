@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BitCoin.Xam.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,21 @@ namespace BitCoin.Xam.View
 	{
         public object Parameter { get; set; }
 
+        public ProfitView(object parameter)
+        {
+            InitializeComponent();
 
-        public ProfitView ()
-		{
-			InitializeComponent ();
-		}
-	}
+            Parameter = parameter;
+
+            BindingContext = App.Locator.ProfitViewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var areaViewModel = BindingContext as ProfitViewModel;
+            if (areaViewModel != null) areaViewModel.OnAppearing(Parameter);
+        }
+    }
 }

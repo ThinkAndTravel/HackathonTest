@@ -16,7 +16,7 @@ namespace BitCoin.Xam
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new AreaView(null));
+            MainPage = new NavigationPage(new ProfitView(null));
         }
 
         protected override void OnStart()

@@ -91,7 +91,7 @@ namespace BitCoin.Xam.ViewModel
                 result.Add(new Dot()
                 {
                     x = list[i].time,
-                    y = profit + (result.Count > 0 ? result[result.Count - 1].y : 0),
+                    y = profit
                 });
             }
             return result;
