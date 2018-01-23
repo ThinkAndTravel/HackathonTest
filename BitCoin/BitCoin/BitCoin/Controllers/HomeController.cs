@@ -36,10 +36,10 @@ namespace BitCoin.Controllers
             }
         }
 
-        public List<BidAskPair> Last24hInfo()
+        public async Task<List<BidAskPair>> Last24hInfo()
         {
             MongoController.Connect();
-            var info = MongoController.Last24h();
+            var info = await MongoController.Last24h();
             return info;
         }
 

@@ -21,23 +21,23 @@ namespace BitCoinWeb.Controllers
             db = client.GetDatabase("bitcoin");
             Rates = db.GetCollection<BidAskPair>("Rates");
         }
-        public static void Add(BidAskPair rate)
+        public static async void Add(BidAskPair rate)
         {
-            Rates.InsertOne(rate);
+            await Rates.InsertOneAsync(rate);
         }
-        public static List<BidAskPair> Find(String exchanger)
+        public static async Task<List<BidAskPair>> Find(String exchanger)
         {
             var filter = new BsonDocument("exchanger", exchanger);
 
-            var q = Rates.FindSync(filter);
+            var q = await Rates.FindAsync(filter);
             return q.ToList();
         }
 
-        public static List<BidAskPair> Last24h()
+        public static async Task<List<BidAskPair>> Last24h()
         {
             var now = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var filter = new BsonDocument("time", new BsonDocument("$gte", now - 24 * 60 * 60));
-            var q = Rates.FindSync(filter);
+            var q = await Rates.FindAsync(filter);
             var l = q.ToList();
             return l;
         }
