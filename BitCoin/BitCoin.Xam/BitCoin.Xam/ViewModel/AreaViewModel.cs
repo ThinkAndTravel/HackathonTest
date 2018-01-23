@@ -34,11 +34,12 @@ namespace BitCoin.Xam.ViewModel
                 StrokeThickness = 2.0
             };
             List<BidAskPair> list = new List<BidAskPair>();
-            var t = list[0].time;
+          
             double[] Bid = Array.ConvertAll(new double[1450], v => -1.0);
             double[] Ask = Array.ConvertAll(new double[1450], v => -1.0);
 
-            list = BitCoin.Xam.Services.ApiService.Last24hPoints().Result;
+            list = ApiService.Last24hPoints().Result;
+            var t = list[0].time;
             foreach (var a in list)
             {
                 DateTime time = DateTimeOffset.FromUnixTimeSeconds(a.time-t).DateTime;
