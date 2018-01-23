@@ -4,7 +4,11 @@ using System.Text;
 using OxyPlot;
 using OxyPlot.Series;
 using BitCoin.Xam.ViewModel.Base;
+using System.Net.Http;
 using BitCoin.Xam.Services;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace BitCoin.Xam.ViewModel
 {
@@ -34,11 +38,24 @@ namespace BitCoin.Xam.ViewModel
                 StrokeThickness = 2.0
             };
             List<BidAskPair> list = new List<BidAskPair>();
-            var t = list[0].time;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Settings.App_Uri + @"Home/Last24hInfo");
+            HttpWebResponse response = (HttpWebResponse)(request.GetResponseAsync().GetAwaiter().GetResult());
+
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                var str = reader.ReadToEnd();
+                list = JsonConvert.DeserializeObject<List<BidAskPair>>(str);
+                list.Sort((a, b) => a.time.CompareTo(b.time));
+
+            }
+            List<BidAskPair> list1 = new List<BidAskPair>();
+            List<BidAskPair> list2 = new List<BidAskPair>();
+          
             double[] Bid = Array.ConvertAll(new double[1450], v => -1.0);
             double[] Ask = Array.ConvertAll(new double[1450], v => -1.0);
-
-            list = BitCoin.Xam.Services.ApiService.Last24hPoints().Result;
+            var t = list[0].time;
             foreach (var a in list)
             {
                 DateTime time = DateTimeOffset.FromUnixTimeSeconds(a.time-t).DateTime;
@@ -48,8 +65,8 @@ namespace BitCoin.Xam.ViewModel
             }
             for (int i = 0; i < 1440; i++)
             {
-                areaSerie.Points.Add(new DataPoint(i, Bid[i]));
-                areaSerie.Points2.Add(new DataPoint(i, Ask[i]));
+                if (Bid[i] != -1) areaSerie.Points.Add(new DataPoint(i/6.0, Bid[i]));
+                if (Ask[i] != -1) areaSerie.Points2.Add(new DataPoint(i/6.0, Ask[i]));
             }
 
             PlotModel.Series.Add(areaSerie);
