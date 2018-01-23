@@ -5,7 +5,7 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6047AE07-F4E8-4FA4-AFDD-789A35485BC9}</ProjectGuid>
+    <ProjectGuid>{4F090E15-8D56-4D54-A9A7-E783C757371D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BitCoin.Xam.Services</RootNamespace>
